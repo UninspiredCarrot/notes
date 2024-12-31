@@ -1,0 +1,1 @@
+topics_path=/Users/bolt/code/notes/topics/
