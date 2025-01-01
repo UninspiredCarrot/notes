@@ -1,4 +1,4 @@
-#include "parse_commands.h"
+#include "../main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,12 +14,19 @@ Command *parse_command(int argc, char *argv[]) {
   Option *options = malloc(no_options * sizeof(Option));
 
   // fill in the structs
+  if (strcmp(argv[2], "new") == 0) {
+    command_ptr->action = NEW;
+  }
 
-  strcpy(command_ptr->cmd, argv[1]);
-  strcpy(command_ptr->type, argv[2]);
+  if (strcmp(argv[1], "topic") == 0) {
+    command_ptr->type = TOPIC;
+  }
+
   command_ptr->no_options = no_options;
   for (int i = 0; i < no_options; i++) {
-    strcpy((options[i]).key, argv[i * 2 + 3] + 2);
+    if (strcmp(argv[i * 2 + 3] + 2, "name") == 0) {
+      (options[i]).key = NAME;
+    }
     strcpy((options[i]).value, argv[i * 2 + 4]);
   }
   command_ptr->options = options;
@@ -27,11 +34,11 @@ Command *parse_command(int argc, char *argv[]) {
 }
 
 void print_command(Command *command_ptr) {
-  printf("Command -> %s\n", command_ptr->cmd);
-  printf("Type -> %s\n", command_ptr->type);
+  printf("Command -> %d\n", command_ptr->action);
+  printf("Type -> %d\n", command_ptr->type);
   printf("Number of Options -> %d\n\n", command_ptr->no_options);
   for (int i = 0; i < command_ptr->no_options; i++) {
-    printf("Option[%d] key -> %s\n", i, (command_ptr->options)[i].key);
+    printf("Option[%d] key -> %d\n", i, (command_ptr->options)[i].key);
     printf("Option[%d] value -> %s\n", i, (command_ptr->options)[i].value);
   }
 }

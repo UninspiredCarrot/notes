@@ -1,0 +1,16 @@
+TOPICS:
+- Data Structures
+-- Arrays
+-- Linked Lists
+-- Stacks
+-- Queues
+-- Trees
+-- Hashing
+-- Priority Quees
+- Algorithms
+-- Sorting
+--- Quick Sort
+--- Radix Sorting
+--- Mergesort
+--- External Sorting
+-- Searching
