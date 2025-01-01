@@ -17,13 +17,13 @@ int main(int argc, char *argv[]) {
     show_help();
     return -1;
   }
-
-  if (cmd_ptr->type == TOPIC) {
-
-    if (cmd_topic(cmd_ptr) < 0) {
-      printf("Couldn't execute topic command\n");
-      return -1;
-    }
+  switch (cmd_ptr->type) {
+  case TOPIC:
+    cmd_topic(cmd_ptr);
+    break;
+  case PROBLEM:
+    cmd_problem(cmd_ptr);
+    break;
   }
   print_command(cmd_ptr);
   return 0;

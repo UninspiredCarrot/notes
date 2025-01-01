@@ -20,13 +20,18 @@ Command *parse_command(int argc, char *argv[]) {
 
   if (strcmp(argv[1], "topic") == 0) {
     command_ptr->type = TOPIC;
+  } else if (strcmp(argv[1], "problem") == 0) {
+    command_ptr->type = PROBLEM;
   }
 
   command_ptr->no_options = no_options;
   for (int i = 0; i < no_options; i++) {
     if (strcmp(argv[i * 2 + 3] + 2, "name") == 0) {
       (options[i]).key = NAME;
+    } else if (strcmp(argv[i * 2 + 3] + 2, "url") == 0) {
+      (options[i]).key = URL;
     }
+
     strcpy((options[i]).value, argv[i * 2 + 4]);
   }
   command_ptr->options = options;
